@@ -224,7 +224,7 @@ namespace BOM_Creator
 				ws.Cells[j, 6].Value = "EA";
 				ws.Cells[j, 7].Value = b.designators;
 				ws.Cells[j, 8].Value = b.package;
-				ws.Cells[j, 9].Value = b.url;
+				ws.Cells[j, 9].Formula = "HYPERLINK(\"" + b.url + "\",\"" + b.url + "\")"; 
 
 				j++;
 			}
