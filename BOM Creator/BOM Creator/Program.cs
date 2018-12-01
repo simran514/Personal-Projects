@@ -11,6 +11,8 @@ using OfficeOpenXml;
 using OfficeOpenXml.Table;
 using OfficeOpenXml.Drawing;
 using OfficeOpenXml.Style;
+using System.Windows.Forms;
+
 
 
 
@@ -119,7 +121,7 @@ namespace BOM_Creator
 		}
 
 		
-		[STAThread]
+		//[STAThread]
 		private static void Main(string[] args)
 		{
 			//var bom = new ExcelQueryFactory(@"C:\Users\SIMRA\Downloads\Replay Module Interface 1.2D BOM.xlsx");
@@ -139,6 +141,10 @@ namespace BOM_Creator
 			 * 
 			 */
 
+			//Application.EnableVisualStyles();
+			//Application.SetCompatibleTextRenderingDefault(false);
+			//Application.Run(new Form1());
+
 			List<BomItem> bomItems = new List<BomItem>();
 			var fileLocation = (@"D:\Documents\Altium\RePlay\Controller\1.2B\Output Files\Replay Controller 1.2B.csv");
 			var csv = new CachedCsvReader(new StreamReader(fileLocation), true);
@@ -146,6 +152,14 @@ namespace BOM_Creator
 			string[] headers = csv.GetFieldHeaders();
 			string tmpUrl;
 			int n;
+
+			while (csv.ReadNextRecord())
+			{
+				for (int i = 0; i < fieldCount; i++)
+				{
+					Console.WriteLine(csv[i]);
+				}
+			}
 
 			string[] bomHeaders = {"Item",
 								   "Manufacturer",
